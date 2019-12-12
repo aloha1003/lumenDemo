@@ -1,0 +1,15 @@
+1. name space 沒有 Illuminate\Foundation 要處理
+	App\Models\User.php會改到
+	App\Models\UserAuth.php會改到
+2. facade alias
+3. Illuminate\Routing\Controller 改成 Laravel\Lumen\Routing\Controller
+4. App\Models\Manager 不需要 Authenticatable
+5. 把 Illuminate\Contracts\Routing\ResponseFactory 改成 Laravel\Lumen\Http\ResponseFactory
+6. Lumen 預設不支援客制化請求，需要重寫 RuleRequest
+7. 安裝 Redis Service
+composer require illuminate/redis
+$app->register(Illuminate\Redis\RedisServiceProvider::class); 
+8. Helper.php 新增str_slug、resolve、app_path
+
+
+

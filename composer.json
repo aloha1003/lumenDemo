@@ -1,0 +1,57 @@
+{
+    "name": "laravel/lumen",
+    "description": "The Laravel Lumen Framework.",
+    "keywords": ["framework", "laravel", "lumen"],
+    "license": "MIT",
+    "type": "project",
+    "require": {
+        "php": "^7.2",
+        "barryvdh/laravel-cors": "^0.11.4",
+        "firebase/php-jwt": "^5.0",
+        "guzzlehttp/guzzle": "^6.5",
+        "illuminate/cookie": "^6.7",
+        "illuminate/redis": "^6.7",
+        "illuminate/routing": "^6.7",
+        "laravel/lumen-framework": "^6.0",
+        "predis/predis": "^1.1",
+        "prettus/l5-repository": "^2.6",
+        "tencent/tls-sig-api": "^1.0",
+        "tencentcloud/tencentcloud-sdk-php": "^3.0",
+        "waavi/sanitizer": "^1.0",
+        "zgldh/qiniu-laravel-storage": "^0.10.3"
+    },
+    "require-dev": {
+        "fzaninotto/faker": "^1.4",
+        "phpunit/phpunit": "^8.0",
+        "mockery/mockery": "^1.0"
+    },
+    "autoload": {
+        "files": [
+            "app/Helpers/Helpers.php"
+        ],
+        "classmap": [
+            "database/seeds",
+            "database/factories"
+        ],
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "autoload-dev": {
+        "classmap": [
+            "tests/"
+        ]
+    },
+    "scripts": {
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ]
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

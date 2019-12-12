@@ -1,0 +1,21 @@
+<?php
+return [
+    'id' => '流水号',
+    'transaction_no' => '交易编号',
+    'pay_transaction_no' => '金流渠道交易编号',
+    'pay_step' => '交易阶段',
+    'notify_status' => '异步通知状态',
+    'user_id' => '用户ID',
+    'pay_channels_slug' => '金流渠道',
+    'pay_channel_payments_pay_type' => '交易方式',
+    'fee' => '手续费设定',
+    'cost' => '成本',
+    'amount' => '充值金额',
+    'amount_sum' => '总充值金额',
+    'profit' => '净额',
+    'gold' => '换的金币',
+    'pay_detail' => '当前的交易资讯',
+    'pay_at' => '交易完成时间',
+    'created_at' => '交易建立时间',
+    'user_register_channel' => '用户注册渠道',
+];

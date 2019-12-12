@@ -1,0 +1,35 @@
+<?php
+return [
+    'description' => '前台帳戶',
+    'advance_description' => '修改帐号',
+    'query_description' => '查询帐号',
+    'main_title' => '前台帳戶',
+    'better_title' => '优质用户列表',
+    'sub_title_list' => '列表',
+    'sub_title_add_edit' => '新增/修改',
+    'realname_verify_title' => '实名认证审核',
+    'unlock_title' => '解禁列表',
+    'sex_title' => [
+        0 => '男',
+        1 => '女',
+    ],
+    'user_type_title' => [
+        0 => '一般用戶',
+        1 => '直播主',
+    ],
+    'not_found_user' => '找不到使用者 :user',
+    'real_name_not_pass' => '实名认证尚未通过',
+    'nickname_exist' => '用戶明已存在 :nickname',
+    'nickname_sysytem_used' => '不可使用系統預設名稱 :nickname',
+    'reach_avatar_change_times_limit' => '今日用户头像更新次数已达上限',
+    'is_not_anchor' => '這名用戶不是主播 :user',
+    'has_been_anchor' => '已经是主播了',
+    'invalid_update_gold' => '請使用updateGold方法來更新用戶金幣',
+    'real_name_verify_title' => '审核',
+    'gold_not_enough' => '金幣不足',
+    'cellphone_not_exist' => '手機號碼不存在',
+    'block_talk' => '禁言几小时',
+    'hour' => '小时',
+    'reason_input' => '输入原因',
+
+];

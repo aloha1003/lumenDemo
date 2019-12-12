@@ -1,0 +1,20 @@
+<?php
+return [
+    'id' => '直播間id',
+    'status' => '直播房間狀態',
+    'user_id' => '直播主uid',
+    'game_slug' => '直播游戏代码',
+    'game' => '直播游戏',
+    'real_user_number' => '直播房內的真實用戶數量',
+    'robot_user_number' => '直播房內的機器人用戶數量',
+    'hot_value' => '热度',
+    'total_receive_gold' => '本次直播所收金币數量',
+    'password' => '密碼',
+    'stream_urls' => '串流網址',
+    'start_at' => '开始时间',
+    'duration' => '直播时间',
+    'total_durations' => '累积直播时间',
+    'leave_at' => '结束时间',
+    'is_private' => '私密房',
+    'room_type' => '房间类型',
+];

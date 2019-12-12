@@ -1,0 +1,239 @@
+<?php
+
+namespace App\Http\Controllers\API;
+
+/**
+ * @SWG\Swagger(
+ *   			host="localhost:8004",
+ * 			basePath="/api/",
+ *     schemes={"http"},
+ *     @SWG\Info(
+ * 			title="金絲雀api文件", 
+ * 			version="0.1"
+ * 		),
+ *      @SWG\Definition(
+ *          definition="ErrorModel",
+ *          required={"code", "message"},
+ *          @SWG\Property(
+ *              property="code",
+ *              type="integer",
+ *              format="int32"
+ *          ),
+ *          @SWG\Property(
+ *              property="message",
+ *              type="string"
+ *          )
+ *      ),
+ *      @SWG\Definition(
+ *          definition="StandResponseModel",
+ *          required={"code", "message", "data"},
+ *          @SWG\Property(
+ *              property="code",
+ *              type="integer",
+ *              format="int32"
+ *          ),
+ *          @SWG\Property(
+ *              property="message",
+ *              type="string"
+ *          ),
+ *          @SWG\Property(
+ *              property="data",
+ *              type="string"
+ *          )
+ *      ),
+ *      @SWG\Definition(
+ *          definition="StatusResponseModel",
+ *          required={"code", "message", "data"},
+ *          @SWG\Property(
+ *              property="code",
+ *              type="integer",
+ *              format="int32"
+ *          ),
+ *          @SWG\Property(
+ *              property="message",
+ *              type="string"
+ *          ),
+ *          @SWG\Property(
+ *              property="data",
+ *              type="object",
+ *              @SWG\Property(
+ *                  property="status",
+ *                  type="boolean",
+ *              )
+ *          )
+ *      )
+ * )
+ */
+ /**
+ * @SWG\ExternalDocumentation(
+ *     description="遊戲api文件連結",
+ *     url="/game/doc"
+ * )
+ */
+ /**
+     * @SWG\Definition(
+     *     definition="API Response Code",
+     *     description="API Response Code",
+     *     @SWG\Property(
+     *          property="200",
+     *          type="integer",
+     *          description="請求成功"
+     *      ),
+     *     @SWG\Property(
+     *          property="400",
+     *          type="string",
+     *          description="請求失敗"
+     *      ),
+     *     @SWG\Property(
+     *          property="100001",
+     *          type="string",
+     *          description="驗證失敗"
+     *      ),
+     *      @SWG\Property(
+     *          property="100002",
+     *          type="integer",
+     *          description="傳入格式錯誤"
+     *      ),
+     *      @SWG\Property(
+     *          property="100003",
+     *          type="integer",
+     *          description="電話號碼或者密碼錯誤"
+     *      ),
+     *      @SWG\Property(
+     *          property="100004",
+     *          type="integer",
+     *          description="token 驗證失敗"
+     *      ),
+     *      @SWG\Property(
+     *          property="100005",
+     *          type="integer",
+     *          description="系統維護"
+     *      ),
+     *      @SWG\Property(
+     *          property="120000",
+     *          type="integer",
+     *          description="用戶不存在"
+     *      ),
+     *      @SWG\Property(
+     *          property="120001",
+     *          type="integer",
+     *          description="用戶餘額不足"
+     *      ),
+     *      @SWG\Property(
+     *          property="180000",
+     *          type="integer",
+     *          description="代理不存在"
+     *      ),
+     *      @SWG\Property(
+     *          property="180001",
+     *          type="integer",
+     *          description="您不是代理"
+     *      ),
+     *      @SWG\Property(
+     *          property="180002",
+     *          type="integer",
+     *          description="用戶已在名單中"
+     *      ),
+     *      @SWG\Property(
+     *          property="180003",
+     *          type="integer",
+     *          description="不能加自己到名單中"
+     *      ),
+     *      @SWG\Property(
+     *          property="180004",
+     *          type="integer",
+     *          description="不能從名單中移除自己"
+     *      ),
+     *      @SWG\Property(
+     *          property="180005",
+     *          type="integer",
+     *          description="不能轉帳給自己"
+     *      )
+     * )
+     */
+
+    
+    /**
+    * @SWG\Definition(
+    *     definition="直播間的熱度與金幣資訊-IM廣播資料格式",
+    *     description="格式",
+    *     @SWG\Property(property="data", type="object",
+    *        @SWG\Property(property="gold", type="string", example=24200.5, description="直播間的收禮金幣數"),
+    *        @SWG\Property(property="hot_value", type="string", example=53500, description="直播間熱度"),
+    *    )
+    * )
+    */
+
+    /**
+    * @SWG\Definition(
+    *     definition="直播間的傳送門資訊 -IM廣播資料格式 ",
+    *     description="格式",
+    *     @SWG\Property(property="data", type="object",
+    *        @SWG\Property(property="content", type="string", example="法国反恐精英", description="訊息"),
+    *        @SWG\Property(property="roomId", type="string", example="365", description="房間id"),
+    *        @SWG\Property(property="isAnchor", type="string", example=true, description="是否為主播, 必定為true"),
+    *        @SWG\Property(property="pusherID", type="string", example="12000006", description="主播id"),
+    *        @SWG\Property(property="pusherNickName", type="string", example="王直播", description="主播暱稱"),
+    *        @SWG\Property(property="pusherPic", type="string", example="www.cdn.com/xxx.png", description="主播頭像"),
+    *        @SWG\Property(property="senderID", type="string", example="1200003", description="用戶id"),
+    *        @SWG\Property(property="senderLevel", type="string", example="654", description="用戶等級"),
+    *        @SWG\Property(property="senderName", type="string", example="小胖子", description="用戶暱稱"),
+    *        @SWG\Property(property="senderPic", type="string", example="www.cdn.com/xxx.png", description="用戶頭像")
+    *    )
+    * )
+    */
+
+  /**
+    * @SWG\Definition(
+    *     definition="熱門直播間排行榜-IM廣播資料格式",
+    *     description="格式",
+    *     @SWG\Property(property="data", type="object",
+    *        @SWG\Property(property="in_rank", type="boolean", example=true, description="是否有擠進排行榜, true:有, false:沒有"),
+    *        @SWG\Property(property="user_id", type="string", example=12000003, description="用戶id"),
+    *        @SWG\Property(property="room_id", type="string", example=12000003, description="直播間id"),
+    *        @SWG\Property(property="rank", type="string", example=5, description="本直播間的最新排名"),
+    *        @SWG\Property(property="old_rank", type="string", example=16, description="上一次直播間的排名"),
+    *        @SWG\Property(property="hot_value", type="string", example=3156135, description="熱度值"),
+    *        @SWG\Property(property="prev_rank_hot_value", type="string", example=4528633, description="上一名的熱度值"),
+    *        @SWG\Property(property="next_rank_hot_value", type="string", example=3050964, description="下一名的熱度值"),
+    *    )
+    * )
+    */
+  /**
+    * @SWG\Definition(
+    *     definition="關注直播列表 - 未開播資料格式",
+    *     description="格式",
+    *     @SWG\Property(property="data", type="object",
+    *        @SWG\Property(property="user_id", type="string", example=12000003, description="用戶id"),
+    *        @SWG\Property(property="status", type="string", example=0, description="0常駐, 未開播"),
+    *        @SWG\Property(property="user", type="object", 
+    *           @SWG\Property(property="user_id", type="string", example=12000003, description="用戶id"),
+    *           @SWG\Property(property="pretty_id", type="string", example=12000003, description="顯示的用戶id"),
+    *           @SWG\Property(property="nick_name", type="string", example="kkk", description="暱稱"),
+    *           @SWG\Property(property="cellphone", type="string", example="", description="手機號, 回傳空值"),
+    *           @SWG\Property(property="birthday", type="string", example="2003-08-31", description="生日"),
+    *           @SWG\Property(property="avatar", type="string", example="http://ddlive.jusi888.com/avatar/654321", description="頭像url"),
+    *           @SWG\Property(property="sign", type="string", example="簽名狀態", description="簽名狀態"),
+    *           @SWG\Property(property="sex", type="string", example=1, description="性別"),
+    *           @SWG\Property(property="level", type="string", example=6, description="等級"),
+    *           @SWG\Property(property="exp", type="string", example=3840, description="經驗值"),
+    *           @SWG\Property(property="is_anchor", type="string", example=1, description="是否為主播"),
+    *           @SWG\Property(property="is_agent", type="string", example=1, description="是否為代理"),
+    *           @SWG\Property(property="is_live", type="string", example=0, description="是否在直播"),
+    *           @SWG\Property(property="is_verify_real_name", type="string", example=0, description="是否通過實名認證"),
+    *           @SWG\Property(property="gold", type="string", example=300.30, description="金幣數量"),
+    *        ),
+    *        @SWG\Property(property="anchor_info", type="object", 
+    *           @SWG\Property(property="front_cover", type="string", example="http://ddlive.jusi888.com/frontcover/99988899", description="封面圖"),
+    *        ),
+    *        @SWG\Property(property="leave_at", type="string", example="", description=""),
+    *        @SWG\Property(property="duration", type="string", example=0, description=""),
+    *        @SWG\Property(property="fans_after_open", type="string", example=0, description=""),
+    *    )
+    * )
+    */
+
+
+class APIDocController 
+{
+}
